@@ -50,22 +50,6 @@ const TodoEntry = () => {
     seteditId(id);
   };
 
-  //
-  // useEffect(()=>{
-  //   const todosTxt = JSON.parse(localStorage.getItem("todos")); //get the todo array/json from localStorage
-  //   const todosDes =JSON.parse(localStorage.getItem("todoDes"));
-
-  //   if(todos && todos.length>0){  //Checking whether it is empty if empty don't need to set it as it of no use
-  //     setTodoTxt(todos);
-  //   }
-  // },[])
-
-  // //to set the todo
-  // useEffect(()=>{
-  //   localStorage.setItem("todos",JSON.stringify(todoTxt));
-  // },[todoTxt,todoDesc]) //depend
-
-
 
   useEffect(()=>{
     const todos = JSON.parse(localStorage.getItem("todos"));
@@ -79,9 +63,6 @@ const TodoEntry = () => {
     localStorage.setItem("todos",JSON.stringify(todoList));
   },[todoList]);
 
-  
-
-  //
 
   let renderTask = <h2 className="font-semibold text-white text-lg rounded-md p-4 bg-green-500 hover:bg-green-600">No Task Available</h2>;
   if (todoList.length > 0) {
@@ -103,13 +84,13 @@ const TodoEntry = () => {
   return (
     <>
       <div className="">
-        <form onSubmit={handleSubmit} className="todo-entry">
+        <form onSubmit={handleSubmit} className="">
           <input
             value={todoTxt}
             onChange={(e) => {
               setTodoTxt(e.target.value);
             }}
-            className="bg-slate-500 mt-4 mb-5 rounded-md p-2 px-3 mr-2 placeholder:text-zinc text-white outline-none shadow-lg font-semibold"
+            className="bg-slate-500 w-full mt-4 mb-5 rounded-md p-2 px-3 mr-2 placeholder:text-zinc text-white outline-none shadow-lg font-semibold"
             type="text"
             placeholder="Enter a Todo..."
           ></input>
@@ -118,11 +99,13 @@ const TodoEntry = () => {
             onChange={(e) => {
               setTodoDesc(e.target.value);
             }}
-            className="bg-slate-500 rounded-md p-2 px-3 mr-2 placeholder:text-zinc text-white outline-none shadow-lg font-semibold"
+            className="bg-slate-500 w-full rounded-md p-2 px-3 mr-2 placeholder:text-zinc text-white outline-none shadow-lg font-semibold"
             type="text"
             placeholder="Todo Description..."
           ></input>
-          <button className="bg-blue-500 p-2 rounded-lg text-white font-semibold hover:bg-blue-600 shadow-lg">{editId ? "Edit" : "Add"}</button>
+          <div className="my-4 text-center">
+          <button className="w-20 py-2 bg-blue-500 p-2 rounded-lg text-white font-semibold hover:bg-blue-600 shadow-lg">{editId ? "Edit" : "Add"}</button>
+          </div>
         </form>
       </div>
       <div className="todo-container">
